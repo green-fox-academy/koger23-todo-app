@@ -19,19 +19,30 @@ public class Todo {
 
     } else if (args[0].equals("-a")) {
 
-      try{
+      try {
         taskListObj.addTask(args[1]);
 
-      } catch (ArrayIndexOutOfBoundsException e){
-        System.out.println("You have not defined the task description.\n");
+      } catch (ArrayIndexOutOfBoundsException e) {
+        System.out.println("Unable to add: no task provided.\n");
         System.out.println("Example: Todo -a 'new task'\n");
         printHelp();
       }
 
+    } else if (args[0].equals("-r")) {
+      try {
+        taskListObj.removeTask(Integer.valueOf(args[1]) - 1);
+
+      } catch (ArrayIndexOutOfBoundsException e) {
+        System.out.println("Unable to remove: no index provided.\n");
+      } catch (NumberFormatException e) {
+        System.out.println("Unable to remove: index is not a number");
+      }
+    } else {
+      System.out.println("Unsupported argument");
     }
   }
 
-  public static void printHelp(){
+  public static void printHelp() {
     System.out.println("Command line arguments:");
     System.out.println("-l   Lists all the tasks");
     System.out.println("-a   Adds a new task");
