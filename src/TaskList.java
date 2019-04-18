@@ -86,6 +86,21 @@ public class TaskList {
     }
   }
 
+  public void printListUndoneOnly(){
+
+    if (taskList.size() == 0){
+      System.out.println("No todos for today! :)");
+    } else {
+
+      for (int i = 0; i < taskList.size(); i++) {
+        
+        if (!taskList.get(i).isFinished()){
+          System.out.println(i + 1 + " - [ ] " + taskList.get(i).getTaskDescription());
+        }
+      }
+    }
+  }
+
   public static void main(String[] args) {
 
     TaskList taskList = new TaskList();
