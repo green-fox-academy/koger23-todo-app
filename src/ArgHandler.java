@@ -27,6 +27,12 @@ public class ArgHandler {
       case "--check":
         argCheckTask(args[1]);
         break;
+      case "-h":
+        Help.printHelp();
+        break;
+      case "--help":
+        Help.printHelp();
+        break;
       case "-r":
         argRemoveTask(args[1]);
         break;
