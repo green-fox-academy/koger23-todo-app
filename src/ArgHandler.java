@@ -46,9 +46,9 @@ public class ArgHandler {
     try {
       taskListObj.checkTask(Integer.valueOf(arg) - 1);
     } catch (ArrayIndexOutOfBoundsException e) {
-      System.out.println("Unable to remove: no index provided.\n");
+      msgNoIndexProvided();
     } catch (NumberFormatException e) {
-      System.out.println("Unable to remove: index is not a number");
+      msgIndexIsNotAnumber();
     }
   }
 
@@ -56,9 +56,9 @@ public class ArgHandler {
     try {
       taskListObj.removeDoneTasks();
     } catch (ArrayIndexOutOfBoundsException e) {
-      System.out.println("Unable to remove: no index provided.\n");
+      msgNoIndexProvided();
     } catch (NumberFormatException e) {
-      System.out.println("Unable to remove: index is not a number");
+      msgIndexIsNotAnumber();
     }
   }
 
@@ -66,9 +66,9 @@ public class ArgHandler {
     try {
       taskListObj.removeTask(Integer.valueOf(arg) - 1);
     } catch (ArrayIndexOutOfBoundsException e) {
-      System.out.println("Unable to remove: no index provided.\n");
+      msgNoIndexProvided();
     } catch (NumberFormatException e) {
-      System.out.println("Unable to remove: index is not a number");
+      msgIndexIsNotAnumber();
     }
   }
 
@@ -76,9 +76,17 @@ public class ArgHandler {
     try {
       taskListObj.addTask(arg);
     } catch (ArrayIndexOutOfBoundsException e) {
-      System.out.println("Unable to add: no task provided.\n");
+      msgNoIndexProvided();
       System.out.println("Example: Todo -a 'new task'\n");
       Help.printHelp();
     }
+  }
+
+  private static void msgIndexIsNotAnumber() {
+    System.out.println("Unable to remove: index is not a number");
+  }
+
+  private static void msgNoIndexProvided() {
+    System.out.println("Unable to add: no task provided.\n");
   }
 }
