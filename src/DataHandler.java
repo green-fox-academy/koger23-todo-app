@@ -20,7 +20,7 @@ public class DataHandler {
 
       try {
         data = Files.readAllLines(path);
-        System.out.println("Datafile exists, read in.");
+//        System.out.println("Datafile exists, read in.");
 
       } catch (IOException e) {
         System.out.println("Error while reading data file.");
@@ -30,7 +30,7 @@ public class DataHandler {
     } else {
       try {
         dataFile.createNewFile();
-        System.out.println("Datafile did not exist, so it has been created.");
+//        System.out.println("Datafile did not exist, so it has been created.");
 
       } catch (IOException e) {
         System.out.println("I/O Error while creating data file.");
