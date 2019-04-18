@@ -112,6 +112,7 @@ public class TaskList {
     }
     for (int index : toRemove){
       taskList.remove(index);
+      saveTaskList();
     }
   }
 
