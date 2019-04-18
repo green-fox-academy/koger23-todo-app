@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskConverter {
@@ -12,9 +13,19 @@ public class TaskConverter {
     return task;
   }
 
-  public static List<String> convertDataToString(Task task){
+  public static List<String> convertDataToString(List<Task> taskList, String separator){
 
-    return null;
+    List<String> taskStrings = new ArrayList<>();
+
+    for (Task task : taskList){
+
+      String taskString = task.getTaskDescription() + separator + task.isFinished();
+
+      taskStrings.add(taskString);
+
+    }
+
+    return taskStrings;
   }
 
 }
