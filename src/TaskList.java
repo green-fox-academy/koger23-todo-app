@@ -93,11 +93,25 @@ public class TaskList {
     } else {
 
       for (int i = 0; i < taskList.size(); i++) {
-        
-        if (!taskList.get(i).isFinished()){
+
+        if (taskList.get(i).isFinished() == false){
           System.out.println(i + 1 + " - [ ] " + taskList.get(i).getTaskDescription());
         }
       }
+    }
+  }
+
+  public void removeDoneTasks(){
+
+    List<Integer> toRemove = new ArrayList<>();
+
+    for (Task task : taskList){
+      if (task.isFinished == true){
+        toRemove.add(taskList.indexOf(task));
+      }
+    }
+    for (int index : toRemove){
+      taskList.remove(index);
     }
   }
 
