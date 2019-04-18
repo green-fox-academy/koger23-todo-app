@@ -1,5 +1,6 @@
 public class ArgHandler {
   private static TaskList taskListObj = new TaskList();
+  private static String REGEX = ",";
 
   public static void checkArgs(String[] args) {
     switch (getArgs(args)) {
@@ -68,7 +69,10 @@ public class ArgHandler {
 
   private static void argCheckTask(String arg) {
     try {
-      taskListObj.checkTask(Integer.valueOf(arg) - 1);
+      String[] args = arg.split(REGEX);
+      for (String i : args) {
+        taskListObj.checkTask(Integer.valueOf(i) - 1);
+      }
     } catch (ArrayIndexOutOfBoundsException e) {
       msgNoIndexProvided();
     } catch (NumberFormatException e) {
@@ -88,7 +92,10 @@ public class ArgHandler {
 
   private static void argRemoveTask(String arg) {
     try {
-      taskListObj.removeTask(Integer.valueOf(arg) - 1);
+      String[] args = arg.split(REGEX);
+      for (String i : args) {
+        taskListObj.removeTask(Integer.valueOf(i) - 1);
+      }
     } catch (ArrayIndexOutOfBoundsException e) {
       msgNoIndexProvided();
     } catch (NumberFormatException e) {
@@ -98,7 +105,10 @@ public class ArgHandler {
 
   private static void argAddTask(String arg) {
     try {
-      taskListObj.addTask(arg);
+      String[] args = arg.split(REGEX);
+      for (String i : args) {
+        taskListObj.addTask(i);
+      }
     } catch (ArrayIndexOutOfBoundsException e) {
       msgNoIndexProvided();
       System.out.println("Example: Todo -a 'new task'\n");
@@ -112,5 +122,9 @@ public class ArgHandler {
 
   private static void msgNoIndexProvided() {
     System.out.println("Unable to make action: no task provided.\n");
+  }
+
+  private static void splitArgs(String[] args){
+
   }
 }
