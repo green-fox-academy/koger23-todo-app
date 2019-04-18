@@ -50,9 +50,6 @@ public class TaskList {
     } catch (IndexOutOfBoundsException e){
       System.out.println("Unable to remove: index is out of bound");
     }
-
-
-
   }
 
   public void saveTaskList(){
@@ -61,6 +58,12 @@ public class TaskList {
 
   public void checkTask(int index){
 
+    try{
+      taskList.get(index).setFinished(!taskList.get(index).isFinished());
+      saveTaskList();
+    } catch (IndexOutOfBoundsException e){
+      System.out.println("Unable to remove: index is out of bound");
+    }
   }
 
   public void printList(){
