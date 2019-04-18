@@ -51,7 +51,7 @@ public class TaskList {
 
     for (int i = 0; i < taskList.size(); i++){
 
-      System.out.println(i + " - " + taskList.get(i).getTaskDescription());
+      System.out.println(i + 1 + " - " + taskList.get(i).getTaskDescription());
 
     }
 
