@@ -49,12 +49,16 @@ public class TaskList {
 
   public void printList(){
 
-    for (int i = 0; i < taskList.size(); i++){
+    if (taskList.size() == 0){
+      System.out.println("No todos for today! :)");
+    } else {
 
-      System.out.println(i + 1 + " - " + taskList.get(i).getTaskDescription());
+      for (int i = 0; i < taskList.size(); i++) {
 
+        System.out.println(i + 1 + " - " + taskList.get(i).getTaskDescription());
+
+      }
     }
-
   }
 
   public static void main(String[] args) {
