@@ -4,8 +4,23 @@ import java.util.List;
 public class TaskList {
 
   private List<Task> taskList = new ArrayList<>();
+  private DataHandler dataHandler = new DataHandler();
+  private final String separator = ";";
 
   public TaskList() {
+    populateList();
+  }
+
+  public void populateList(){
+
+    for (String line : dataHandler.getData()){
+
+      Task task = TaskConverter.convertDataToTask(line, separator);
+
+      taskList.add(task);
+
+    }
+
   }
 
   public List<Task> getTaskList() {
@@ -29,7 +44,25 @@ public class TaskList {
   }
 
   public void checkTask(int index){
-    
+
+  }
+
+  public void printList(){
+
+    for (int i = 0; i < taskList.size(); i++){
+
+      System.out.println(i + " - " + taskList.get(i).getTaskDescription());
+
+    }
+
+  }
+
+  public static void main(String[] args) {
+
+    TaskList taskList = new TaskList();
+
+    taskList.printList();
+
   }
 
 }
