@@ -38,16 +38,25 @@ public class TaskList {
 
     taskList.add(task);
 
-    dataHandler.saveDatas(TaskConverter.convertDataToString(taskList, separator));
-
-  }
-
-  public void removeTask(Task task){
+    saveTaskList();
 
   }
 
   public void removeTask(int index){
 
+    try{
+      taskList.remove(index);
+      saveTaskList();
+    } catch (IndexOutOfBoundsException e){
+      System.out.println("Unable to remove: index is out of bound");
+    }
+
+
+
+  }
+
+  public void saveTaskList(){
+    dataHandler.saveDatas(TaskConverter.convertDataToString(taskList, separator));
   }
 
   public void checkTask(int index){
