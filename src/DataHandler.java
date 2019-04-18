@@ -8,12 +8,13 @@ import java.util.List;
 public class DataHandler {
 
   private List<String> data;
+  private Path path;
   private String FILENAME = "todo.csv";
   private final String sep = ";";
 
   public DataHandler() {
 
-    Path path = Paths.get(FILENAME);
+    path = Paths.get(FILENAME);
     File dataFile = new File(FILENAME);
 
     if (dataFile.isFile()){
@@ -39,7 +40,14 @@ public class DataHandler {
     }
   }
 
-  public void saveDatas(){
+  public void saveDatas(List<String> taskList){
+
+    try {
+      Files.write(path, taskList);
+    } catch (IOException e) {
+      System.out.println("Error during saving tasks.");
+      e.printStackTrace();
+    }
 
   }
 
