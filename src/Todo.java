@@ -14,8 +14,11 @@ public class Todo {
       System.out.println("=============================\n");
       printHelp();
 
-    } else if (args[0].equals("-l")) {
+    } else if (args[0].equals("-la")) {
       taskListObj.printList();
+
+    } else if (args[0].equals("-l")) {
+      taskListObj.printListUndoneOnly();
 
     } else if (args[0].equals("-a")) {
 
