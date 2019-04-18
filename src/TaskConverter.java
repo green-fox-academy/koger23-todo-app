@@ -7,7 +7,7 @@ public class TaskConverter {
 
     String[] arr = text.split(separator);
 
-    Task task  = new Task(Boolean.parseBoolean(arr[0]), arr[1]);
+    Task task  = new Task(Boolean.parseBoolean(arr[1]), arr[0]);
 
     return task;
   }
