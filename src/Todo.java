@@ -40,6 +40,15 @@ public class Todo {
       } catch (NumberFormatException e) {
         System.out.println("Unable to remove: index is not a number");
       }
+    }  else if (args[0].equals("-ru")) {
+      try {
+        taskListObj.removeDoneTasks();
+
+      } catch (ArrayIndexOutOfBoundsException e) {
+        System.out.println("Unable to remove: no index provided.\n");
+      } catch (NumberFormatException e) {
+        System.out.println("Unable to remove: index is not a number");
+      }
     } else if (args[0].equals("-c")) {
       try {
         taskListObj.checkTask(Integer.valueOf(args[1]) - 1);
