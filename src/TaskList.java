@@ -31,7 +31,14 @@ public class TaskList {
     this.taskList = taskList;
   }
 
-  public void addTask(Task task){
+  public void addTask(String taskDescription){
+
+    Task task = new Task();
+    task.setTaskDescription(taskDescription);
+
+    taskList.add(task);
+
+    dataHandler.saveDatas(TaskConverter.convertDataToString(taskList, separator));
 
   }
 
