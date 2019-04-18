@@ -6,19 +6,37 @@ public class ArgHandler {
       case "-la":
         taskListObj.printList();
         break;
+      case "--listall":
+        taskListObj.printList();
+        break;
       case "-l":
+        taskListObj.printListUndoneOnly();
+        break;
+       case "--list":
         taskListObj.printListUndoneOnly();
         break;
       case "-a":
         argAddTask(args[1]);
         break;
+      case "--add":
+        argAddTask(args[1]);
+        break;
       case "-c":
+        argCheckTask(args[1]);
+        break;
+      case "--check":
         argCheckTask(args[1]);
         break;
       case "-r":
         argRemoveTask(args[1]);
         break;
+      case "--remove":
+        argRemoveTask(args[1]);
+        break;
       case "-rd":
+        argRemoveAllDoneTask(args[1]);
+        break;
+      case "--removedone":
         argRemoveAllDoneTask(args[1]);
         break;
       case "noArg":
