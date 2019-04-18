@@ -3,6 +3,10 @@ public class Task {
   boolean isFinished;
   String taskDescription;
 
+  public Task(){
+    this(false, "");
+  }
+
   public Task(boolean isFinished, String taskDescription) {
     this.isFinished = isFinished;
     this.taskDescription = taskDescription;
