@@ -107,10 +107,10 @@ public class ArgHandler {
   }
 
   private static void msgIndexIsNotAnumber() {
-    System.out.println("Unable to remove: index is not a number");
+    System.out.println("Unable to make action: index is not a number");
   }
 
   private static void msgNoIndexProvided() {
-    System.out.println("Unable to add: no task provided.\n");
+    System.out.println("Unable to make action: no task provided.\n");
   }
 }
