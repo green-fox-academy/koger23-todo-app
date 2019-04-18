@@ -9,7 +9,7 @@ public class Todo {
       System.out.println("Command Line Todo application");
       System.out.println("=============================\n");
 
-      printHelp();
+      Help.printHelp();
     } else if (args[0].equals("-la")) {
       taskListObj.printList();
     } else if (args[0].equals("-l")) {
@@ -20,7 +20,7 @@ public class Todo {
       } catch (ArrayIndexOutOfBoundsException e) {
         System.out.println("Unable to add: no task provided.\n");
         System.out.println("Example: Todo -a 'new task'\n");
-        printHelp();
+        Help.printHelp();
       }
     } else if (args[0].equals("-r")) {
       try {
@@ -49,14 +49,6 @@ public class Todo {
     } else {
       System.out.println("Unsupported argument");
     }
-  }
-
-  public static void printHelp() {
-    System.out.println("Command line arguments:");
-    System.out.println("-l   Lists all the tasks");
-    System.out.println("-a   Adds a new task");
-    System.out.println("-r   Removes an task");
-    System.out.println("-c   Completes an task");
   }
 }
 
