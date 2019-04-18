@@ -1,5 +1,4 @@
 public class Task {
-
   boolean isFinished;
   String taskDescription;
 
