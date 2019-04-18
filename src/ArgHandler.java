@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Collections;
+
 public class ArgHandler {
   private static TaskList taskListObj = new TaskList();
   private static String REGEX = ",";
@@ -93,6 +96,7 @@ public class ArgHandler {
   private static void argRemoveTask(String arg) {
     try {
       String[] args = arg.split(REGEX);
+      Arrays.sort(args, Collections.reverseOrder());
       for (String i : args) {
         taskListObj.removeTask(Integer.valueOf(i) - 1);
       }
