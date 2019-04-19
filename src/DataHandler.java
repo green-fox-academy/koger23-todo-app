@@ -9,7 +9,6 @@ public class DataHandler {
   private List<String> data;
   private Path path;
   private String FILENAME = "todo.csv";
-  private final String sep = ";";
 
   public DataHandler() {
     path = Paths.get(FILENAME);
