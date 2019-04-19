@@ -5,14 +5,22 @@ import java.util.List;
 
 
 public class UserFileHandler {
-  private Path path;
+  private static Path path;
 
-  public void saveDatas(List<String> taskList){
+  public static void saveDatas(List<String> taskList){
     try {
       Files.write(path, taskList);
     } catch (IOException e) {
       System.out.println("Error during saving file.");
       e.printStackTrace();
     }
+  }
+
+  public static Path getPath() {
+    return path;
+  }
+
+  public static void setPath(Path path) {
+    UserFileHandler.path = path;
   }
 }
