@@ -2,6 +2,11 @@ public class User {
   private String userName;
   private boolean isActive;
 
+
+  public User(){
+    this(false, "");
+  }
+
   public User(boolean isActive, String userName) {
     this.userName = userName;
     this.isActive = isActive;
