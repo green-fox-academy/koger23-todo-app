@@ -18,12 +18,13 @@ public class UserFileHandler {
       try {
         data = Files.readAllLines(path);
       } catch (IOException e) {
-        System.out.println("Error while reading userdata file.");
+        System.out.println("IO Error while reading userdata file.");
         e.printStackTrace();
       }
     } else {
       try {
         dataFile.createNewFile();
+        Files.write(path, "user;true".getBytes());
       } catch (IOException e) {
         System.out.println("I/O Error while creating userdata file.");
         e.printStackTrace();
@@ -35,7 +36,7 @@ public class UserFileHandler {
     try {
       Files.write(path, taskList);
     } catch (IOException e) {
-      System.out.println("Error during saving file.");
+      System.out.println("IO Error during saving file.");
       e.printStackTrace();
     }
   }
