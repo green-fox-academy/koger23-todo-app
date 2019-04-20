@@ -3,31 +3,34 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLOutput;
 import java.util.List;
 
 public class DataHandler {
   private List<String> data;
   private Path path;
-  private String fileName = "todo.csv";
+  private String fileName;
   private AccountManager accountManager;
+  private File dataFile;
 
   public DataHandler(AccountManager accountManager) {
     this.accountManager = accountManager;
     if (this.accountManager.getActiveUser() != null){
-      this.fileName = "users-" + this.accountManager.getActiveUser().getUserName() + "-" + "todo.csv";
+      this.fileName = accountManager.getActiveUser().getTaskFile();
+      dataFile = new File(this.fileName);
     }
-    path = Paths.get(this.fileName);
-    File dataFile = new File(this.fileName);
-    if (dataFile.isFile()){
-      try {
-        data = Files.readAllLines(path);
-      } catch (IOException e) {
-        System.out.println("Error while reading data file.");
-        e.printStackTrace();
-      }
-    } else {
+  }
+
+  public void createTaskFile(User user){
+    path = Paths.get(user.getTaskFile());
+    dataFile = new File(user.getTaskFile());
+    System.out.println(user.getUserName() + " created!");
+    System.out.println(dataFile.exists());
+    if (!dataFile.exists()){
+      System.out.println(dataFile.getName());
       try {
         dataFile.createNewFile();
+        System.out.println(user.getUserName() + " created!");
       } catch (IOException e) {
         System.out.println("I/O Error while creating data file.");
         e.printStackTrace();
