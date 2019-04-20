@@ -84,6 +84,7 @@ public class TaskList {
         }
       }
     }
+    System.out.println("");
   }
 
   public void removeDoneTasks() {
