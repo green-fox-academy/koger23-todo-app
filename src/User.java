@@ -1,7 +1,7 @@
   public class User {
   private String userName;
   private boolean isActive;
-  private String taskFilePath = "users-" + getUserName() + "-" + "todo.csv";
+  private String taskFilePath;
 
 
   public User(){
@@ -11,6 +11,7 @@
   public User(boolean isActive, String userName) {
     this.userName = userName;
     this.isActive = isActive;
+    this.taskFilePath = "users-" + userName + "-" + "todo.csv";
   }
 
   public String getUserName() {
