@@ -66,17 +66,16 @@ public class AccountManager {
     }
     if (!userNameExists){
       userList.add(userObj);
-      saveUserList();
-      initUserTaskFile();
+      setActiveUser(userList.size() - 1);
+      DataHandler dH = new DataHandler(this);
+      dH.createTaskFile(userObj);
     }
-    setActiveUser(userList.size() - 1);
   }
 
   public void removeUser(int index){
     try {
       userList.remove(index);
       saveUserList();
-      new DataHandler(this).removeTaskFile();
     } catch (IndexOutOfBoundsException e) {
       System.out.println("No such an user index");
     }
@@ -102,9 +101,5 @@ public class AccountManager {
     } catch (IndexOutOfBoundsException e){
       System.out.println("No such an user index");
     }
-  }
-
-  public void initUserTaskFile() {
-    new DataHandler(this).createTaskFile();
   }
 }
