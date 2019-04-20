@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.SQLOutput;
 import java.util.List;
 
 public class DataHandler {
@@ -17,7 +16,9 @@ public class DataHandler {
     this.accountManager = accountManager;
     if (this.accountManager.getActiveUser() != null){
       this.fileName = accountManager.getActiveUser().getTaskFile();
+      this.path = Paths.get(accountManager.getActiveUser().getTaskFile());
       dataFile = new File(this.fileName);
+      createTaskFile(accountManager.getActiveUser());
     }
   }
 
@@ -36,6 +37,13 @@ public class DataHandler {
         dataFile.createNewFile();
       } catch (IOException e) {
         System.out.println("I/O Error while creating data file.");
+        e.printStackTrace();
+      }
+    } else {
+      try {
+        this.data = Files.readAllLines(path);
+      } catch (IOException e) {
+        System.out.println("I/O Error while reading data file.");
         e.printStackTrace();
       }
     }
