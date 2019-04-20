@@ -21,6 +21,13 @@ public class DataHandler {
     }
   }
 
+  public void removeTaskFile(User user){
+    dataFile = new File(user.getTaskFile());
+    if (dataFile.delete()){
+      System.out.println("Userdata deleted successfully");
+    }
+  }
+
   public void createTaskFile(User user){
     path = Paths.get(user.getTaskFile());
     dataFile = new File(user.getTaskFile());
