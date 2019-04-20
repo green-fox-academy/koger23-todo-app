@@ -9,6 +9,7 @@ public class TerminalHandler {
   }
 
   public String getOsName() {
+    osName = osName.split(" ")[0];
     return osName;
   }
 
@@ -16,17 +17,16 @@ public class TerminalHandler {
     this.osName = osName;
   }
 
-  public static void clearTerminalWin() throws IOException, InterruptedException {
+  private static void clearTerminalWin() throws IOException, InterruptedException {
     new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
   }
 
-  public static void clearTerminalLinux() {
+  private static void clearTerminalLinux() {
     System.out.print("\033\143");
   }
 
-  public static void main(String[] args) {
+  public static void clearTerminal() {
     TerminalHandler terminalHandler = new TerminalHandler();
-    System.out.println("Test");
 
     switch (terminalHandler.getOsName()){
       case "Windows":
