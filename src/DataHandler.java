@@ -31,13 +31,9 @@ public class DataHandler {
   public void createTaskFile(User user){
     path = Paths.get(user.getTaskFile());
     dataFile = new File(user.getTaskFile());
-    System.out.println(user.getUserName() + " created!");
-    System.out.println(dataFile.exists());
     if (!dataFile.exists()){
-      System.out.println(dataFile.getName());
       try {
         dataFile.createNewFile();
-        System.out.println(user.getUserName() + " created!");
       } catch (IOException e) {
         System.out.println("I/O Error while creating data file.");
         e.printStackTrace();

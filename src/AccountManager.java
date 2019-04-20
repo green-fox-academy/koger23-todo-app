@@ -51,7 +51,7 @@ public class AccountManager {
     } else {
       System.out.println("\n User list is empty. Add new user(s).\n");
     }
-
+    System.out.println("");
   }
 
   public void addUser(String userName){

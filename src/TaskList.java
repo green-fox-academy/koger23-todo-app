@@ -61,7 +61,7 @@ public class TaskList {
 
   public void printList() {
     if (taskList.size() == 0) {
-      System.out.println("No todos for today! :)");
+      System.out.println("No todos for today! :)\n");
     } else {
       for (int i = 0; i < taskList.size(); i++) {
         String state = " ";
@@ -71,11 +71,12 @@ public class TaskList {
         System.out.println(i + 1 + " - [" + state + "] " + taskList.get(i).getTaskDescription());
       }
     }
+    System.out.println("");
   }
 
   public void printListUndoneOnly() {
     if (taskList.size() == 0) {
-      System.out.println("No todos for today! :)");
+      System.out.println("No todos for today! :)\n");
     } else {
       for (int i = 0; i < taskList.size(); i++) {
         if (taskList.get(i).isFinished() == false) {
