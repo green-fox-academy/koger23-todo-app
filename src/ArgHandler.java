@@ -30,6 +30,7 @@ public class ArgHandler {
         break;
       case "-a":
       case "--add":
+        accountManager.checkUserList();
         argAddTask(args[1]);
         break;
       case "-au":
