@@ -3,7 +3,7 @@ import java.util.Collections;
 
 public class ArgHandler {
   private static AccountManager accountManager = new AccountManager();
-  private static TaskList taskListObj = new TaskList();
+  private static TaskList taskListObj = new TaskList(accountManager);
   private static String REGEX = ",";
 
   public static void checkArgs(String[] args) {
