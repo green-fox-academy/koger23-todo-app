@@ -24,14 +24,19 @@ public class AccountManager {
 
   public void printUserList(){
     String active;
-    for (int i = 0; i < userList.size(); i++){
-      if (userList.get(i).isActive()){
-        active = " (active)";
-      } else {
-        active = "";
+    if (userList.size() > 0){
+      for (int i = 0; i < userList.size(); i++){
+        if (userList.get(i).isActive()){
+          active = " (active)";
+        } else {
+          active = "";
+        }
+        System.out.println(i+1 + " - " + userList.get(i).getUserName() + active);
       }
-      System.out.println(i+1 + " - " + userList.get(i).getUserName() + active);
+    } else {
+      System.out.println("\n User list is empty. Add new user(s).\n");
     }
+
   }
 
   public void addUser(String userName){
@@ -76,6 +81,9 @@ public class AccountManager {
     try {
       userList.get(index).setActive(true);
       currentUser = userList.get(index);
+      System.out.println(currentUser.isActive());
+      printUserList();
+      saveUserList();
     } catch (IndexOutOfBoundsException e){
       System.out.println("No such an user index");
     }
