@@ -8,11 +8,19 @@ public class ArgHandler {
 
   public static void checkArgs(String[] args) {
     TerminalHandler.clearTerminal();
-    printHeader();
+    printHeader(args);
     switch (getArgs(args)) {
+      case "-cu":
+      case "--change-user":
+        accountManager.setActiveUser(Integer.valueOf(args[1]) - 1);
+        break;
       case "-la":
       case "--listall":
         taskListObj.printList();
+        break;
+      case "-lu":
+      case "--list-user":
+        accountManager.printUserList();
         break;
       case "-l":
       case "--list":
@@ -21,6 +29,10 @@ public class ArgHandler {
       case "-a":
       case "--add":
         argAddTask(args[1]);
+        break;
+      case "-au":
+      case "--add-user":
+        accountManager.addUser(args[1]);
         break;
       case "-c":
       case "--check":
@@ -34,6 +46,10 @@ public class ArgHandler {
       case "--remove":
         argRemoveTask(args[1]);
         break;
+      case "-ru":
+      case "--remove-user":
+        argRemoveUser(args[1]);
+        break;
       case "-rd":
       case "--removedone":
         argRemoveAllDoneTask(args[1]);
@@ -46,10 +62,36 @@ public class ArgHandler {
         break;
     }
   }
-  private static void printHeader() {
+
+  private static void argRemoveUser(String arg) {
+    try {
+      String[] args = arg.split(REGEX);
+      Arrays.sort(args, Collections.reverseOrder());
+      for (String i : args) {
+        accountManager.removeUser(Integer.valueOf(i) - 1);
+      }
+      accountManager.printUserList();
+    } catch (ArrayIndexOutOfBoundsException e) {
+      msgNoIndexProvided();
+    } catch (NumberFormatException e) {
+      msgIndexIsNotAnumber();
+    }
+  }
+
+  private static void printHeader(String[] args) {
     System.out.println("Command Line Todo application");
     System.out.println("=============================");
-    System.out.println("Logged in as: " + accountManager.getActiveUser().getUserName() + "\n");
+    if (args.length > 0){
+      try {
+        if ((!args[0].equals("--help")) && (!args[0].equals("-h"))) {
+          System.out.println("Logged in as: " + accountManager.getActiveUser().getUserName() + "\n");
+        }
+      } catch (NullPointerException e) {
+        System.out.println("No user selected. Select one:\n(See -h, --help)\n");
+        accountManager.printUserList();
+        System.exit(1);
+      }
+    }
   }
 
   private static String getArgs(String[] args){
@@ -122,9 +164,5 @@ public class ArgHandler {
 
   private static void msgNoIndexProvided() {
     System.out.println("Unable to make action: no task provided.\n");
-  }
-
-  private static void splitArgs(String[] args){
-
   }
 }
