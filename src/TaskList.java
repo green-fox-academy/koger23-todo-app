@@ -14,9 +14,11 @@ public class TaskList {
   }
 
   public void populateList() {
-    for (String line : dataHandler.getData()) {
-      Task task = TaskConverter.convertDataToTask(line, separator);
-      taskList.add(task);
+    if (dataHandler.getData() != null) {
+      for (String line : dataHandler.getData()) {
+        Task task = TaskConverter.convertDataToTask(line, separator);
+        taskList.add(task);
+      }
     }
   }
 
