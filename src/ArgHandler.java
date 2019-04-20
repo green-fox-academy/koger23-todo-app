@@ -6,6 +6,7 @@ public class ArgHandler {
   private static String REGEX = ",";
 
   public static void checkArgs(String[] args) {
+    printHeader();
     switch (getArgs(args)) {
       case "-la":
         taskListObj.printList();
@@ -50,7 +51,6 @@ public class ArgHandler {
         argRemoveAllDoneTask(args[1]);
         break;
       case "noArg":
-        printHeader();
         Help.printHelp();
         break;
       default:
