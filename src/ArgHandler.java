@@ -2,13 +2,13 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class ArgHandler {
-  private static TaskList taskListObj = new TaskList();
   private static AccountManager accountManager = new AccountManager();
+  private static TaskList taskListObj = new TaskList();
   private static String REGEX = ",";
 
   public static void checkArgs(String[] args) {
     TerminalHandler.clearTerminal();
-    Header.printHeader(args, accountManager);
+    Header.printHeader();
     switch (getArgs(args)) {
       case "-cu":
       case "--change-user":
@@ -16,6 +16,7 @@ public class ArgHandler {
         break;
       case "-la":
       case "--listall":
+        accountManager.checkUserList();
         taskListObj.printList();
         break;
       case "-lu":
@@ -24,6 +25,7 @@ public class ArgHandler {
         break;
       case "-l":
       case "--list":
+        accountManager.checkUserList();
         taskListObj.printListUndoneOnly();
         break;
       case "-a":
@@ -36,6 +38,7 @@ public class ArgHandler {
         break;
       case "-c":
       case "--check":
+        accountManager.checkUserList();
         argCheckTask(args[1]);
         break;
       case "-h":
@@ -44,6 +47,7 @@ public class ArgHandler {
         break;
       case "-r":
       case "--remove":
+        accountManager.checkUserList();
         argRemoveTask(args[1]);
         break;
       case "-ru":
@@ -52,7 +56,8 @@ public class ArgHandler {
         break;
       case "-rd":
       case "--removedone":
-        argRemoveAllDoneTask(args[1]);
+        accountManager.checkUserList();
+        argRemoveAllDoneTask();
         break;
       case "noArg":
         Help.printHelp();
@@ -102,7 +107,7 @@ public class ArgHandler {
     }
   }
 
-  private static void argRemoveAllDoneTask(String arg) {
+  private static void argRemoveAllDoneTask() {
     try {
       taskListObj.removeDoneTasks();
       taskListObj.printList();
