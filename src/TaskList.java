@@ -3,10 +3,13 @@ import java.util.List;
 
 public class TaskList {
   private List<Task> taskList = new ArrayList<>();
-  private DataHandler dataHandler = new DataHandler();
   private final String separator = ";";
+  private AccountManager accountManager;
+  private DataHandler dataHandler;
 
-  public TaskList() {
+  public TaskList(AccountManager accountManager) {
+    this.accountManager = accountManager;
+    this.dataHandler = new DataHandler(this.accountManager);
     populateList();
   }
 
@@ -28,9 +31,7 @@ public class TaskList {
   public void addTask(String taskDescription) {
     Task task = new Task();
     task.setTaskDescription(taskDescription);
-
     taskList.add(task);
-
     saveTaskList();
   }
 
@@ -93,10 +94,5 @@ public class TaskList {
       taskList.remove(index);
       saveTaskList();
     }
-  }
-
-  public static void main(String[] args) {
-    TaskList taskList = new TaskList();
-    taskList.printList();
   }
 }
