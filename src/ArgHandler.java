@@ -8,7 +8,7 @@ public class ArgHandler {
 
   public static void checkArgs(String[] args) {
     TerminalHandler.clearTerminal();
-    printHeader(args);
+    Header.printHeader(args, accountManager);
     switch (getArgs(args)) {
       case "-cu":
       case "--change-user":
@@ -75,22 +75,6 @@ public class ArgHandler {
       msgNoIndexProvided();
     } catch (NumberFormatException e) {
       msgIndexIsNotAnumber();
-    }
-  }
-
-  private static void printHeader(String[] args) {
-    System.out.println("Command Line Todo application");
-    System.out.println("=============================");
-    if (args.length > 0){
-      try {
-        if ((!args[0].equals("--help")) && (!args[0].equals("-h"))) {
-          System.out.println("Logged in as: " + accountManager.getActiveUser().getUserName() + "\n");
-        }
-      } catch (NullPointerException e) {
-        System.out.println("No user selected. Select one:\n(See -h, --help)\n");
-        accountManager.printUserList();
-        System.exit(1);
-      }
     }
   }
 
