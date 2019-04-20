@@ -16,6 +16,9 @@ public class AccountManager {
     for (String line : uFh.getData()) {
       User user = UserConverter.convertDataToTask(line, separator);
       userList.add(user);
+      if (user.isActive()){
+        currentUser = user;
+      }
     }
   }
 
