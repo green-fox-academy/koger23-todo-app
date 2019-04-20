@@ -8,11 +8,16 @@ import java.util.List;
 public class DataHandler {
   private List<String> data;
   private Path path;
-  private String FILENAME = "todo.csv";
+  private String fileName = "todo.csv";
+  private AccountManager accountManager;
 
-  public DataHandler() {
-    path = Paths.get(FILENAME);
-    File dataFile = new File(FILENAME);
+  public DataHandler(AccountManager accountManager) {
+    this.accountManager = accountManager;
+    if (this.accountManager.getActiveUser() != null){
+      this.fileName = "users-" + this.accountManager.getActiveUser().getUserName() + "-" + "todo.csv";
+    }
+    path = Paths.get(this.fileName);
+    File dataFile = new File(this.fileName);
     if (dataFile.isFile()){
       try {
         data = Files.readAllLines(path);
@@ -45,9 +50,4 @@ public class DataHandler {
   public List<String> getData(){
     return data;
   }
-
-  public static void main(String[] args) {
-    DataHandler dH = new DataHandler();
-  }
-
 }
