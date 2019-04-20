@@ -10,13 +10,18 @@ public class UserFileHandler {
   private List<String> data;
   private static Path path;
   private String FILENAME = "users.csv";
+  private File dataFile;
 
   public UserFileHandler() {
-    path = Paths.get(FILENAME);
-    File dataFile = new File(FILENAME);
+    this.path = Paths.get(FILENAME);
+    this.dataFile = new File(FILENAME);
+    createUserFile();
+  }
+
+  public void createUserFile(){
     if (dataFile.isFile()){
       try {
-        data = Files.readAllLines(path);
+        this.data = Files.readAllLines(path);
       } catch (IOException e) {
         System.out.println("IO Error while reading userdata file.");
         e.printStackTrace();
@@ -24,7 +29,7 @@ public class UserFileHandler {
     } else {
       try {
         dataFile.createNewFile();
-        Files.write(path, "user;true".getBytes());
+        this.data = Files.readAllLines(path);
       } catch (IOException e) {
         System.out.println("I/O Error while creating userdata file.");
         e.printStackTrace();
@@ -39,6 +44,14 @@ public class UserFileHandler {
       System.out.println("IO Error during saving file.");
       e.printStackTrace();
     }
+  }
+
+  public String getFILENAME() {
+    return FILENAME;
+  }
+
+  public void setFILENAME(String FILENAME) {
+    this.FILENAME = FILENAME;
   }
 
   public static Path getPath() {
