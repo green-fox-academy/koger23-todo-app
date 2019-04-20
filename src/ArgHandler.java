@@ -3,9 +3,11 @@ import java.util.Collections;
 
 public class ArgHandler {
   private static TaskList taskListObj = new TaskList();
+  private static AccountManager accountManager = new AccountManager();
   private static String REGEX = ",";
 
   public static void checkArgs(String[] args) {
+    TerminalHandler.clearTerminal();
     printHeader();
     switch (getArgs(args)) {
       case "-la":
@@ -60,7 +62,8 @@ public class ArgHandler {
   }
   private static void printHeader() {
     System.out.println("Command Line Todo application");
-    System.out.println("=============================\n");
+    System.out.println("=============================");
+    System.out.println("Logged in as: " + accountManager.getActiveUser().getUserName() + "\n");
   }
 
   private static String getArgs(String[] args){
@@ -79,6 +82,7 @@ public class ArgHandler {
       for (String i : args) {
         taskListObj.checkTask(Integer.valueOf(i) - 1);
       }
+      taskListObj.printList();
     } catch (ArrayIndexOutOfBoundsException e) {
       msgNoIndexProvided();
     } catch (NumberFormatException e) {
@@ -89,6 +93,7 @@ public class ArgHandler {
   private static void argRemoveAllDoneTask(String arg) {
     try {
       taskListObj.removeDoneTasks();
+      taskListObj.printList();
     } catch (ArrayIndexOutOfBoundsException e) {
       msgNoIndexProvided();
     } catch (NumberFormatException e) {
@@ -103,6 +108,7 @@ public class ArgHandler {
       for (String i : args) {
         taskListObj.removeTask(Integer.valueOf(i) - 1);
       }
+      taskListObj.printList();
     } catch (ArrayIndexOutOfBoundsException e) {
       msgNoIndexProvided();
     } catch (NumberFormatException e) {
@@ -116,6 +122,7 @@ public class ArgHandler {
       for (String i : args) {
         taskListObj.addTask(i);
       }
+      taskListObj.printList();
     } catch (ArrayIndexOutOfBoundsException e) {
       msgNoIndexProvided();
       System.out.println("Example: Todo -a 'new task'\n");
