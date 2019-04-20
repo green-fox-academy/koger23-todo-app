@@ -50,14 +50,17 @@ public class ArgHandler {
         argRemoveAllDoneTask(args[1]);
         break;
       case "noArg":
-        System.out.println("Command Line Todo application");
-        System.out.println("=============================\n");
+        printHeader();
         Help.printHelp();
         break;
       default:
         System.out.println("Unsupported argument");
         break;
     }
+  }
+  private static void printHeader() {
+    System.out.println("Command Line Todo application");
+    System.out.println("=============================\n");
   }
 
   private static String getArgs(String[] args){
