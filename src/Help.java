@@ -4,7 +4,7 @@ public class Help {
     System.out.println("-a,  --add             Adds a new task");
     System.out.println("-au, --add-user        Adds a new user");
     System.out.println("-c,  --check           Completes an task");
-    System.out.println("-cu,  --change-user    Change active user");
+    System.out.println("-cu, --change-user     Change active user");
     System.out.println("-l,  --list            Lists all unchecked tasks");
     System.out.println("-la, --listall         Lists all the tasks");
     System.out.println("-r,  --remove          Removes a task by index");
