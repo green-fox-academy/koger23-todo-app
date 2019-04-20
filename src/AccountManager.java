@@ -74,6 +74,8 @@ public class AccountManager {
 
   public void removeUser(int index){
     try {
+      DataHandler dH = new DataHandler(this);
+      dH.removeTaskFile(userList.get(index));
       userList.remove(index);
       saveUserList();
     } catch (IndexOutOfBoundsException e) {
