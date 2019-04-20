@@ -48,6 +48,8 @@ public class AccountManager {
       userList.add(userObj);
       saveUserList();
     }
+    setActiveUser(userList.size() - 1);
+    printUserList();
   }
 
   public void removeUser(int index){
