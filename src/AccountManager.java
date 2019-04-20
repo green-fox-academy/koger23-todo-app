@@ -12,6 +12,19 @@ public class AccountManager {
     populateUserList();
   }
 
+  public void checkUserList(){
+    if (currentUser == null){
+      if (userList.size() == 0) {
+        System.out.println("\n User list is empty. Add new user(s).\n");
+        System.exit(-1);
+      } else {
+        System.out.println("No user selected. Select one:\n(See -h, --help)\n");
+        printUserList();
+        System.exit(-1);
+      }
+    }
+  }
+
   public void populateUserList(){
     for (String line : uFh.getData()) {
       User user = UserConverter.convertDataToTask(line, separator);
@@ -54,7 +67,6 @@ public class AccountManager {
       saveUserList();
     }
     setActiveUser(userList.size() - 1);
-    printUserList();
   }
 
   public void removeUser(int index){
@@ -81,9 +93,8 @@ public class AccountManager {
     try {
       userList.get(index).setActive(true);
       currentUser = userList.get(index);
-      System.out.println(currentUser.isActive());
-      printUserList();
       saveUserList();
+      printUserList();
     } catch (IndexOutOfBoundsException e){
       System.out.println("No such an user index");
     }
