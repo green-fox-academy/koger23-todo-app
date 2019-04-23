@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AccountManager {
+public class AccountHandler {
   private User currentUser;
   private List<User> userList = new ArrayList<>();
   private String separator = ";";
   private UserFileHandler uFh = new UserFileHandler();
 
-  public AccountManager(){
+  public AccountHandler(){
     populateUserList();
   }
 

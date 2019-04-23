@@ -2,8 +2,8 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class ArgHandler {
-  private static AccountManager accountManager = new AccountManager();
-  private static TaskList taskListObj = new TaskList(accountManager);
+  private static AccountHandler accountHandler = new AccountHandler();
+  private static TaskList taskListObj = new TaskList(accountHandler);
   private static String REGEX = ",";
 
   public static void checkArgs(String[] args) {
@@ -12,34 +12,34 @@ public class ArgHandler {
     switch (getArgs(args)) {
       case "-cu":
       case "--change-user":
-        accountManager.setActiveUser(Integer.valueOf(args[1]) - 1);
+        accountHandler.setActiveUser(Integer.valueOf(args[1]) - 1);
         break;
       case "-la":
       case "--listall":
-        accountManager.checkUserList();
+        accountHandler.checkUserList();
         taskListObj.printList();
         break;
       case "-lu":
       case "--list-user":
-        accountManager.printUserList();
+        accountHandler.printUserList();
         break;
       case "-l":
       case "--list":
-        accountManager.checkUserList();
+        accountHandler.checkUserList();
         taskListObj.printListUndoneOnly();
         break;
       case "-a":
       case "--add":
-        accountManager.checkUserList();
+        accountHandler.checkUserList();
         argAddTask(args[1]);
         break;
       case "-au":
       case "--add-user":
-        accountManager.addUser(args[1]);
+        accountHandler.addUser(args[1]);
         break;
       case "-c":
       case "--check":
-        accountManager.checkUserList();
+        accountHandler.checkUserList();
         argCheckTask(args[1]);
         break;
       case "-h":
@@ -48,7 +48,7 @@ public class ArgHandler {
         break;
       case "-r":
       case "--remove":
-        accountManager.checkUserList();
+        accountHandler.checkUserList();
         argRemoveTask(args[1]);
         break;
       case "-ru":
@@ -57,7 +57,7 @@ public class ArgHandler {
         break;
       case "-rd":
       case "--removedone":
-        accountManager.checkUserList();
+        accountHandler.checkUserList();
         argRemoveAllDoneTask();
         break;
       case "noArg":
@@ -74,9 +74,9 @@ public class ArgHandler {
       String[] args = arg.split(REGEX);
       Arrays.sort(args, Collections.reverseOrder());
       for (String i : args) {
-        accountManager.removeUser(Integer.valueOf(i) - 1);
+        accountHandler.removeUser(Integer.valueOf(i) - 1);
       }
-      accountManager.printUserList();
+      accountHandler.printUserList();
     } catch (ArrayIndexOutOfBoundsException e) {
       msgNoIndexProvided();
     } catch (NumberFormatException e) {

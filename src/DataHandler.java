@@ -9,16 +9,16 @@ public class DataHandler {
   private List<String> data;
   private Path path;
   private String fileName;
-  private AccountManager accountManager;
+  private AccountHandler accountHandler;
   private File dataFile;
 
-  public DataHandler(AccountManager accountManager) {
-    this.accountManager = accountManager;
-    if (this.accountManager.getActiveUser() != null){
-      this.fileName = accountManager.getActiveUser().getTaskFile();
-      this.path = Paths.get(accountManager.getActiveUser().getTaskFile());
+  public DataHandler(AccountHandler accountHandler) {
+    this.accountHandler = accountHandler;
+    if (this.accountHandler.getActiveUser() != null){
+      this.fileName = accountHandler.getActiveUser().getTaskFile();
+      this.path = Paths.get(accountHandler.getActiveUser().getTaskFile());
       dataFile = new File(this.fileName);
-      createTaskFile(accountManager.getActiveUser());
+      createTaskFile(accountHandler.getActiveUser());
     }
   }
 

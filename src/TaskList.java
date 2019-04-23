@@ -4,12 +4,12 @@ import java.util.List;
 public class TaskList {
   private List<Task> taskList = new ArrayList<>();
   private final String separator = ";";
-  private AccountManager accountManager;
+  private AccountHandler accountHandler;
   private DataHandler dataHandler;
 
-  public TaskList(AccountManager accountManager) {
-    this.accountManager = accountManager;
-    this.dataHandler = new DataHandler(this.accountManager);
+  public TaskList(AccountHandler accountHandler) {
+    this.accountHandler = accountHandler;
+    this.dataHandler = new DataHandler(this.accountHandler);
     populateList();
   }
 
