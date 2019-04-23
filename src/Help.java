@@ -8,6 +8,7 @@ public class Help {
     System.out.println("-h, --help             This is what you see now");
     System.out.println("-l,  --list            Lists all unchecked tasks");
     System.out.println("-la, --listall         Lists all the tasks");
+    System.out.println("-lu, --list-user        Lists all the tasks");
     System.out.println("-r,  --remove          Removes a task by index");
     System.out.println("-rd, --removedone      Remove all done task");
     System.out.println("-ru, --remove-user     Remove user");
